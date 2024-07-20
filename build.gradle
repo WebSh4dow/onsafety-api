@@ -2,14 +2,15 @@ import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
 import com.bmuschko.gradle.docker.tasks.image.DockerPushImage
 
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.3.2'
+	id 'org.springframework.boot' version '2.7.18'
 	id 'io.spring.dependency-management' version '1.1.6'
 	id 'com.bmuschko.docker-remote-api' version '7.2.0'
+	id 'java'
 }
 
-group = 'com.jarmison.dev'
+group = 'com.gerenciamento'
 version = '0.0.1-SNAPSHOT'
+description = 'API Rest para gerenciamento de pessoas'
 
 java {
 	toolchain {
@@ -24,24 +25,35 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.apache.commons:commons-lang3:3.0'
-	implementation 'org.springframework.boot:spring-boot-starter-mail:3.3.1'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
 
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
-	runtimeOnly 'com.mysql:mysql-connector-j'
-
+	implementation 'org.apache.commons:commons-lang3:3.12.0'
+	implementation 'io.springfox:springfox-boot-starter:3.0.0'
 	compileOnly 'org.projectlombok:lombok:1.18.20'
 	annotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'junit:junit:4.13.2'
+	implementation 'com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.11.0'
+
+	runtimeOnly 'mysql:mysql-connector-java:8.0.32'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
 
+tasks.withType(JavaCompile).configureEach {
+	options.encoding = 'UTF-8'
+}
+
+bootJar {
+	launchScript()
+}
+
+tasks.withType(JavaExec).configureEach {
+	systemProperties System.properties
+}
 tasks.register('buildDockerImage', DockerBuildImage) {
 	inputDir = project.file('.')
 	tags = ["${project.group}/${project.name}:${project.version}".toString()]

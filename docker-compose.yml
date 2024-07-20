@@ -9,19 +9,10 @@ services:
     image: mysql:8.0
     environment:
       MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: "onsafety-db"
     ports:
       - "3306:3306"
     networks:
       - api-network
-
-  application-api:
-    image: application-api
-    command: ["/wait-for-it.sh","erp-api-mysql:3306","-t","40","--","java","-jar","api.jar"]
-    environment:
-      DATABASE_HOST: api-mysql
-    ports:
-      - "8080:8080"
-    networks:
-      - api-network
-    depends_on:
-      - api-mysql
+    volumes:
+      - ./docker/sql:/docker-entrypoint-initdb.d
