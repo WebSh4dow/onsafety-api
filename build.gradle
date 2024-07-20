@@ -8,7 +8,7 @@ plugins {
 	id 'java'
 }
 
-group = 'com.gerenciamento'
+group = 'com.jarmison.dev'
 version = '0.0.1-SNAPSHOT'
 description = 'API Rest para gerenciamento de pessoas'
 
