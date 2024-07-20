@@ -1,135 +1,175 @@
-# Instalação do Docker e Docker Compose no Windows
+# OnSafety - Projeto de Gestão de Pessoas
 
-## Passos para Instalar o Docker Desktop
+## Visão Geral
 
-1. **Baixar o Docker Desktop:**
-   - Acesse a página de download do Docker Desktop para Windows: [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/).
-   - Clique em "Download for Windows (Windows 10/11)".
+Estamos na quarta fase do processo seletivo para a vaga de Programador Júnior aqui no OnSafety. Esta é a última etapa do nosso processo e tem como objetivo avaliar a lógica de programação, organização do código e a forma de programar. O desafio é desenvolver uma aplicação Web para gestão de Pessoas.
 
-2. **Instalar o Docker Desktop:**
-   - Execute o arquivo baixado (`Docker Desktop Installer.exe`).
-   - Siga as instruções do instalador. Você pode ser solicitado a habilitar o WSL 2 (Windows Subsystem for Linux) e a instalação do Hyper-V se ainda não estiver habilitado.
-   - Após a instalação, reinicie o computador se solicitado.
+## Objetivos
 
-3. **Verificar a Instalação:**
-   - Abra o Docker Desktop através do menu iniciar.
-   - Para verificar se o Docker está funcionando corretamente, abra o terminal (PowerShell ou Command Prompt) e execute:
-     ```sh
-     docker --version
-     ```
-   - Para verificar se o Docker Compose está instalado, execute:
-     ```sh
-     docker-compose --version
-     ```
+- Desenvolver uma aplicação Web para gestão de Pessoas.
+- Disponibilizar o código completo do projeto em um repositório Git.
 
-4. **Configurar Docker Desktop:**
-   - O Docker Desktop deve iniciar automaticamente após a instalação. Se não iniciar, você pode abri-lo manualmente a partir do menu iniciar.
-   - No Docker Desktop, você pode configurar recursos como a quantidade de memória e CPUs alocadas para o Docker.
+## Especificações
 
-## Instalação do Docker Compose
+- A aplicação consiste em uma API REST, com os dados persistidos em um banco de dados MySQL.
+- A aplicação deve ser capaz de auto configurar sua base na inicialização ou deve conter um README com os passos necessários para sua execução correta.
+- Incluir pelo menos uma validação na interface, uma na API e uma no banco de dados.
+- Validar e formatar CPF.
+- Obrigatória a utilização do Spring Boot no backend e banco de dados MySQL.
+- A interface pode ser Web ou Mobile, com frameworks de livre escolha do programador.
 
-O Docker Compose já está incluído com o Docker Desktop para Windows, então você não precisa instalá-lo separadamente. Para verificar a versão do Docker Compose, execute:
-```sh
-docker-compose --version
-# Instalação do Docker e Docker Compose no Windows
+## Tecnologias Utilizadas
 
-## Passos para Instalar o Docker Desktop
+- **Backend:** Spring Boot
+- **Banco de Dados:** MySQL
+- **Interface:** Web ou Mobile (framework à escolha do programador)
 
-1. **Baixar o Docker Desktop:**
-   - Acesse a página de download do Docker Desktop para Windows: [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/).
-   - Clique em "Download for Windows (Windows 10/11)".
+## Classe Pessoa
 
-2. **Instalar o Docker Desktop:**
-   - Execute o arquivo baixado (`Docker Desktop Installer.exe`).
-   - Siga as instruções do instalador. Você pode ser solicitado a habilitar o WSL 2 (Windows Subsystem for Linux) e a instalação do Hyper-V se ainda não estiver habilitado.
-   - Após a instalação, reinicie o computador se solicitado.
+A classe `Pessoa` possui os seguintes atributos:
+- `Long id`
+- `String nome`
+- `String cpf`
+- `LocalDate dataNascimento`
+- `String email`
 
-3. **Verificar a Instalação:**
-   - Abra o Docker Desktop através do menu iniciar.
-   - Para verificar se o Docker está funcionando corretamente, abra o terminal (PowerShell ou Command Prompt) e execute:
-     ```sh
-     docker --version
-     ```
-   - Para verificar se o Docker Compose está instalado, execute:
-     ```sh
-     docker-compose --version
-     ```
+## Configuração do Projeto
 
-4. **Configurar Docker Desktop:**
-   - O Docker Desktop deve iniciar automaticamente após a instalação. Se não iniciar, você pode abri-lo manualmente a partir do menu iniciar.
-   - No Docker Desktop, você pode configurar recursos como a quantidade de memória e CPUs alocadas para o Docker.
+### Requisitos
 
-## Instalação do Docker Compose
+- Java 17
+- Spring Boot 3.x
+- MySQL 8.x
+- Docker (opcional, para execução em contêiner)
 
-O Docker Compose já está incluído com o Docker Desktop para Windows, então você não precisa instalá-lo separadamente. Para verificar a versão do Docker Compose, execute:
-```sh
-docker-compose --version
+### Passos para Configuração
 
+1. **Clone o Repositório**
 
+   ```bash
+   git clone https://github.com/usuario/repo.git
+   cd repo
 
-# Instalação do Docker e Docker Compose no Linux
+    Configuração do Banco de Dados
 
-## Passos para Instalar o Docker
+        Local:
 
-1. **Atualizar o Repositório e Instalar Pacotes Necessários:**
-   - Abra o terminal e execute:
-     ```sh
-     sudo apt-get update
-     sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
-     ```
+        Certifique-se de que o MySQL está instalado e em execução. Crie um banco de dados para a aplicação.
 
-2. **Adicionar a Chave GPG do Docker:**
-   - Execute:
-     ```sh
-     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-     ```
+        sql
 
-3. **Adicionar o Repositório Docker:**
-   - Execute:
-     ```sh
-     sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-     ```
+CREATE DATABASE gestao_pessoas;
 
-4. **Instalar o Docker:**
-   - Atualize o repositório e instale o Docker:
-     ```sh
-     sudo apt-get update
-     sudo apt-get install docker-ce
-     ```
+Docker (opcional):
 
-5. **Verificar a Instalação:**
-   - Verifique se o Docker está funcionando:
-     ```sh
-     sudo systemctl status docker
-     ```
-   - Verifique a versão do Docker:
-     ```sh
-     docker --version
-     ```
+Se estiver usando Docker, você pode utilizar o docker-compose.yml incluído no projeto para configurar o MySQL.
 
-## Instalação do Docker Compose
+Crie um arquivo docker-compose.yml na raiz do projeto com o seguinte conteúdo:
 
-1. **Baixar a Última Versão do Docker Compose:**
-   - Execute:
-     ```sh
-     sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-     ```
+yaml
 
-2. **Dar Permissões de Execução:**
-   - Execute:
-     ```sh
-     sudo chmod +x /usr/local/bin/docker-compose
-     ```
+version: '3'
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: gestao_pessoas
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
 
-3. **Verificar a Instalação:**
-   - Verifique a versão do Docker Compose:
-     ```sh
-     docker compose --version
-     ```
+volumes:
+  mysql-data:
 
-## Configurar o Docker para o Usuário Atual (Opcional)
+Execute o Docker Compose para iniciar o contêiner do MySQL:
 
-Para usar o Docker sem `sudo`, adicione seu usuário ao grupo `docker`:
-```sh
-sudo usermod -aG docker $USER
+bash
 
+    docker-compose up -d
+
+Configuração do Projeto
+
+    Arquivo de Propriedades:
+
+    Edite o arquivo src/main/resources/application.properties com as informações do seu banco de dados:
+
+    properties
+
+    spring.datasource.url=jdbc:mysql://localhost:3306/gestao_pessoas
+    spring.datasource.username=root
+    spring.datasource.password=root_password
+    spring.jpa.hibernate.ddl-auto=update
+
+Executar o Projeto
+
+Compile e execute a aplicação Spring Boot:
+
+    Usando Maven:
+
+    bash
+
+./mvnw spring-boot:run
+
+Usando Gradle:
+
+bash
+
+    ./gradlew bootRun
+
+Testar a API
+
+Utilize ferramentas como Postman ou cURL para testar as endpoints da API:
+
+    Adicionar Pessoa:
+
+    bash
+
+curl -X POST http://localhost:8080/persons \
+-H "Content-Type: application/json" \
+-d '{
+  "nome": "Jarmison Paiva",
+  "cpf": "97455387016",
+  "email": "jarmisondev@example.com",
+  "dataNascimento": "2004-01-01"
+}'
+
+Listar Pessoas:
+
+bash
+
+curl http://localhost:8080/persons
+
+Obter Pessoa por ID:
+
+bash
+
+curl http://localhost:8080/persons/{id}
+
+Atualizar Pessoa:
+
+bash
+
+curl -X PUT http://localhost:8080/persons/{id} \
+-H "Content-Type: application/json" \
+-d '{
+  "nome": "Jarmison Paiva",
+  "cpf": "97455387016",
+  "email": "jarmisondev@example.com",
+  "dataNascimento": "2004-01-01"
+}'
+```
+Deletar Pessoa:
+
+bash
+
+        curl -X DELETE http://localhost:8080/persons/{id}
+
+    Validações
+        Validação de Interface: Implementada na camada de frontend (web/mobile).
+        Validação de API: Implementada no backend utilizando Spring Boot.
+        Validação de Banco de Dados: Validação e formatação de CPF implementadas no nível da aplicação.
+
+```
