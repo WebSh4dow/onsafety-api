@@ -39,6 +39,10 @@ A classe `Pessoa` possui os seguintes atributos:
 
 ## Configuração do Projeto
 
+## URL DO SWAGGER
+
+ ```http://localhost:8080/onsafety/api/swagger-ui/index.html ```
+
 ### Requisitos
 
 - Java 17
