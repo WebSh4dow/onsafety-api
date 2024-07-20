@@ -60,7 +60,7 @@ Passo 2: Execute os Scripts do projeto dentro da pasta docker/sql. Esse Script p
 
 - caminho do script esta dentro do proprio projeto em /api/docker/sql/data.sql
 
-## Script inicial de criacao da tabela
+## Script inicial de criacao da tabela EXEMPLO ---> execute o script data.sql 
 ```
 CREATE TABLE IF NOT EXISTS pessoa (
        id BIGINT AUTO_INCREMENT PRIMARY KEY,
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS pessoa (
 ) ENGINE=InnoDB;
 ```
 
-## Script da function validate_cpf
+## Script da function validate_cpf EXEMPLO ---> execute o script data.sql 
 ```
 DELIMITER //
 
@@ -124,7 +124,7 @@ DELIMITER ;
 
 DELIMITER //
 ```
-## Script da trigger insert_tb_pessoa
+## Script da trigger insert_tb_pessoa EXEMPLO ---> execute o script data.sql 
 ```
 CREATE TRIGGER before_insert_tb_pessoa
     BEFORE INSERT ON pessoa
@@ -139,7 +139,7 @@ DELIMITER ;
 
 DELIMITER //
 ```
-## Script da trigger before_update_tb_pessoa
+## Script da trigger before_update_tb_pessoa EXEMPLO ---> execute o script data.sql 
 ```
 CREATE TRIGGER before_update_tb_pessoa
     BEFORE UPDATE ON pessoa
