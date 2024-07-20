@@ -23,31 +23,31 @@ public class Person implements MapperToEntity<PersonEntity> {
     private LocalDate dataNascimento;
 
     public void setPersonId(Long id) {
-        if (id == null) throw new NotificationException("Pessoa sem id, padrao nao suportado.");
+        if (id == null) throw new NotificationException("Pessoa sem id, padrao nao suportado....");
         this.id = id;
     }
 
     public void setNome(String nome) {
-        if (StringUtils.isBlank(nome)) throw new RuntimeException("");
-        if (StringUtils.equalsIgnoreCase(nome, "undefined")) throw new RuntimeException("");
+        if (StringUtils.isBlank(nome)) throw new NotificationException("Nome deve ser informado.....");
+        if (StringUtils.equalsIgnoreCase(nome, "undefined")) throw new NotificationException("Nome invalido....");
         this.nome = nome.toUpperCase();
     }
 
     public void setCpf(String cpf) {
-        if (StringUtils.isBlank(cpf)) throw new RuntimeException("Cpf deve ser informado.");
-        if (StringUtils.equalsIgnoreCase(cpf, "undefined")) throw new RuntimeException("Cpf invalido.");
+        if (StringUtils.isBlank(cpf)) throw new NotificationException("Cpf deve ser informado.....");
+        if (StringUtils.equalsIgnoreCase(cpf, "undefined")) throw new NotificationException("Cpf invalido....");
         this.cpf = cpf;
     }
 
     public void setEmail(String email) {
-        if (StringUtils.isBlank(email)) throw new RuntimeException("");
-        if (StringUtils.equalsIgnoreCase(email, "undefined")) throw new RuntimeException("Email invalido.");
+        if (StringUtils.isBlank(email)) throw new NotificationException("Email deve ser informado");
+        if (StringUtils.equalsIgnoreCase(email, "undefined")) throw new NotificationException("Email invalido....");
         this.email = email;
     }
 
     public void setDataNascimento(LocalDate dataNascimento) {
-        if (dataNascimento == null) throw new RuntimeException("");
-        if (dataNascimento.isAfter(LocalDate.now())) throw new RuntimeException("Data de nascimento não pode ser uma data futura.");
+        if (dataNascimento == null) throw new NotificationException("");
+        if (dataNascimento.isAfter(LocalDate.now())) throw new NotificationException("Data de nascimento não pode ser uma data futura....");
         this.dataNascimento = dataNascimento;
     }
 
@@ -58,6 +58,7 @@ public class Person implements MapperToEntity<PersonEntity> {
         entity.setEmail(this.getEmail());
         entity.setNome(this.getNome());
         entity.setId(this.getId());
+        entity.setDataNascimento(this.getDataNascimento());
         return entity;
     }
 }

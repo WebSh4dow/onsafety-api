@@ -2,10 +2,9 @@ package com.jarmison.dev.api.core.service.impl;
 
 import com.jarmison.dev.api.core.service.AbstractService;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Component;
 import java.util.List;
 
-@Component
+
 public abstract class AbstractServiceImpl<T, ID> implements AbstractService<T, ID> {
 
     protected JpaRepository<T, ID> repository;

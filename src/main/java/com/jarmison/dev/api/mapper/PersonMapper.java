@@ -18,6 +18,7 @@ public class PersonMapper implements MapperToDomain<Person, PersonRequest>, Mapp
         person.setId(request.getId());
         person.setCpf(request.getCpf());
         person.setNome(request.getNome());
+        person.setEmail(request.getEmail());
         person.setDataNascimento(request.getDataNascimento());
         return person;
     }
@@ -28,6 +29,7 @@ public class PersonMapper implements MapperToDomain<Person, PersonRequest>, Mapp
         personResponse.setId(entity.getId());
         personResponse.setCpf(entity.getCpf());
         personResponse.setNome(entity.getNome());
+        personResponse.setEmail(entity.getEmail());
         personResponse.setDataNascimento(entity.getDataNascimento());
         return personResponse;
     }

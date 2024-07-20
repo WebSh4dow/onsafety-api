@@ -13,14 +13,30 @@ import org.springframework.stereotype.Component;
 public class PersonServiceImpl extends AbstractServiceImpl<PersonEntity, Long> implements PersonService {
 
     private final CpfValidator cpfValidator;
+    private final PersonRepository personRepository;
 
-    public PersonServiceImpl(JpaRepository<PersonEntity, Long> repository, CpfValidator cpfValidator) {
+    public PersonServiceImpl(JpaRepository<PersonEntity, Long> repository, CpfValidator cpfValidator, PersonRepository personRepository) {
         super(repository);
         this.cpfValidator = cpfValidator;
+        this.personRepository = personRepository;
     }
 
     @Override
     public void validateCpfPerson(String cpfPerson) {
         if (!cpfValidator.validateCpf(cpfPerson)) throw new NotificationException("O CPF informado é inválido.");
+    }
+
+    @Override
+    public void isthereAreRegisteredCpf(String cpf) {
+        if (personRepository.isthereAreRegisteredCpf(cpf)) {
+            throw new NotificationException("O cpf Nao pode ser cadastrado no sistema pois ja existe.");
+        }
+    }
+
+    @Override
+    public void isthereAreRegisteredEmail(String email) {
+        if (personRepository.isthereAreRegisteredEmail(email)) {
+            throw new NotificationException("O email Nao pode ser cadastrado no sistema pois ja existe.");
+        }
     }
 }
