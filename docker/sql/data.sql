@@ -1,23 +1,21 @@
--- Criação da tabela pessoa
 CREATE TABLE IF NOT EXISTS pessoa (
-                                      id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                                      nome VARCHAR(100) NOT NULL,
-                                      cpf CHAR(11) NOT NULL, -- Use CHAR(11) em vez de VARCHAR(11) para garantir o comprimento fixo
-                                      data_nascimento DATE NOT NULL,
-                                      email VARCHAR(100) NOT NULL,
-                                      UNIQUE (cpf)
+       id BIGINT AUTO_INCREMENT PRIMARY KEY,
+       nome VARCHAR(100) NOT NULL,
+       cpf CHAR(11) NOT NULL,
+       data_nascimento DATE NOT NULL,
+       email VARCHAR(100) NOT NULL,
+       UNIQUE (cpf)
 ) ENGINE=InnoDB;
 
--- Função para validar CPF via banco de dados
+
 DELIMITER //
 
-CREATE FUNCTION validate_cpf(cpf CHAR(11)) -- Use CHAR(11) em vez de VARCHAR(11)
+CREATE FUNCTION validate_cpf(cpf CHAR(11))
     RETURNS BOOLEAN
     DETERMINISTIC
 BEGIN
     DECLARE digit1, digit2, calc1, calc2, i INT;
 
-    -- Remove caracteres não numéricos
     SET cpf = REPLACE(cpf, '.', '');
     SET cpf = REPLACE(cpf, '-', '');
 
@@ -58,7 +56,6 @@ END //
 
 DELIMITER ;
 
--- Trigger para validação de CPF antes de inserir na tabela pessoa
 DELIMITER //
 
 CREATE TRIGGER before_insert_tb_pessoa
@@ -72,7 +69,6 @@ END //
 
 DELIMITER ;
 
--- Trigger para validação de CPF antes de atualizar na tabela pessoa
 DELIMITER //
 
 CREATE TRIGGER before_update_tb_pessoa
